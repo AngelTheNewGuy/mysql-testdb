@@ -1,68 +1,34 @@
-# MySQL Practice Database – Employees & Departments
+-- MySQL Practice Dump for testdb
+-- Employees with departments (joined via foreign key)
 
-This repository contains a clean and simple MySQL database schema created for practicing SQL queries, joins, and foreign keys. It’s designed as a hands-on learning project and portfolio piece to demonstrate relational database skills to future employers.
-
----
-
-## 🗂️ What's Inside
-
-The database (`testdb`) includes:
-
-### 🔹 `departments` Table
-| Column     | Type         | Description                    |
-|------------|--------------|--------------------------------|
-| dept_id    | INT, PK      | Auto-incrementing department ID|
-| dept_name  | VARCHAR(100) | Name of the department         |
-
-### 🔹 `employees` Table
-| Column     | Type         | Description                          |
-|------------|--------------|--------------------------------------|
-| id         | INT, PK      | Auto-incrementing employee ID        |
-| name       | VARCHAR(100) | Employee name                        |
-| position   | VARCHAR(100) | Job title                            |
-| salary     | DECIMAL(10,2)| Employee salary                      |
-| dept_id    | INT, FK      | Foreign key referencing departments  |
-
----
-
-## 📥 How to Use
-
-1. Make sure MySQL is installed and running.
-2. Import the schema using the terminal or MySQL shell:
-
-```bash
-mysql -u root -p < mysql_practice_schema.sql
-```
-
-3. Once imported, run queries like this:
-
-```sql
+DROP DATABASE IF EXISTS testdb;
+CREATE DATABASE testdb;
 USE testdb;
 
-SELECT e.id, e.name, e.position, e.salary, d.dept_name
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id;
-```
+-- Create departments table
+CREATE TABLE departments (
+    dept_id INT AUTO_INCREMENT PRIMARY KEY,
+    dept_name VARCHAR(100)
+);
 
----
+-- Insert sample departments
+INSERT INTO departments (dept_name) VALUES
+('Engineering'),
+('Human Resources'),
+('Finance');
 
-## 🧠 Why This Matters
+-- Create employees table with foreign key to departments
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    position VARCHAR(100),
+    salary DECIMAL(10,2),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+);
 
-This project demonstrates practical knowledge of:
-
-- ✅ Creating relational tables
-- ✅ Using `AUTO_INCREMENT`, `PRIMARY KEY`, and `FOREIGN KEY`
-- ✅ Writing SQL `JOIN` queries
-- ✅ Managing schema versioning with `mysqldump`
-
----
-
-## 📄 File List
-
-- `mysql_practice_schema.sql`: Full database schema with insert statements
-
----
-
-## 🙋‍♂️ Author
-
-Created by [AngelTheNewGuy](https://github.com/AngelTheNewGuy)
+-- Insert sample employees
+INSERT INTO employees (name, position, salary, dept_id) VALUES
+('Alice', 'Engineer', 82000.00, 1),
+('Bob', 'Manager', 92000.00, 2),
+('Charlie', 'Analyst', 64000.50, 3);
