@@ -1,18 +1,34 @@
--- MySQL Practice Dump for testdb
--- Simple employees table with sample data
+# MySQL Practice Database – Employees & Departments
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
-USE testdb;
+This repository contains a clean and simple MySQL database schema created for practicing SQL queries, joins, and foreign keys. It’s designed as a hands-on learning project and portfolio piece to demonstrate relational database skills.
 
-CREATE TABLE employees (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    position VARCHAR(100),
-    salary DECIMAL(10,2)
-);
+---
 
-INSERT INTO employees (name, position, salary) VALUES
-('Alice', 'Engineer', 75000.00),
-('Bob', 'Manager', 85000.00),
-('Charlie', 'Analyst', 64000.50);
+## 🗂️ What's Inside
+
+The database (`testdb`) includes:
+
+### 🔹 `departments` Table
+| Column     | Type         | Description                    |
+|------------|--------------|--------------------------------|
+| dept_id    | INT, PK      | Auto-incrementing department ID|
+| dept_name  | VARCHAR(100) | Name of the department         |
+
+### 🔹 `employees` Table
+| Column     | Type         | Description                          |
+|------------|--------------|--------------------------------------|
+| id         | INT, PK      | Auto-incrementing employee ID        |
+| name       | VARCHAR(100) | Employee name                        |
+| position   | VARCHAR(100) | Job title                            |
+| salary     | DECIMAL(10,2)| Employee salary                      |
+| dept_id    | INT, FK      | Foreign key referencing departments  |
+
+---
+
+## 📥 How to Use
+
+1. Make sure MySQL is installed and running.
+2. Import the schema using the terminal or MySQL shell:
+
+```bash
+mysql -u root -p < mysql_practice_schema.sql
