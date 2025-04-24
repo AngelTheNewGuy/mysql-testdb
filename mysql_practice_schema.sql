@@ -1,6 +1,6 @@
 # MySQL Practice Database – Employees & Departments
 
-This repository contains a clean and simple MySQL database schema created for practicing SQL queries, joins, and foreign keys. It’s designed as a hands-on learning project and portfolio piece to demonstrate relational database skills.
+This repository contains a clean and simple MySQL database schema created for practicing SQL queries, joins, and foreign keys. It’s designed as a hands-on learning project and portfolio piece to demonstrate relational database skills to future employers.
 
 ---
 
@@ -32,3 +32,37 @@ The database (`testdb`) includes:
 
 ```bash
 mysql -u root -p < mysql_practice_schema.sql
+```
+
+3. Once imported, run queries like this:
+
+```sql
+USE testdb;
+
+SELECT e.id, e.name, e.position, e.salary, d.dept_name
+FROM employees e
+JOIN departments d ON e.dept_id = d.dept_id;
+```
+
+---
+
+## 🧠 Why This Matters
+
+This project demonstrates practical knowledge of:
+
+- ✅ Creating relational tables
+- ✅ Using `AUTO_INCREMENT`, `PRIMARY KEY`, and `FOREIGN KEY`
+- ✅ Writing SQL `JOIN` queries
+- ✅ Managing schema versioning with `mysqldump`
+
+---
+
+## 📄 File List
+
+- `mysql_practice_schema.sql`: Full database schema with insert statements
+
+---
+
+## 🙋‍♂️ Author
+
+Created by [AngelTheNewGuy](https://github.com/AngelTheNewGuy)
